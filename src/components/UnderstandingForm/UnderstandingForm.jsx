@@ -9,11 +9,15 @@ function UnderstandingForm() {
     let [understandInput, setUnderstandInput] = useState('');
 
     const handleClick = () => {
-        dispatch({
-            type: 'ADD_UNDERSTAND',
-            payload: understandInput
-        })
-        history.push('/supportForm');
+        if (understandInput === '') {
+            alert('Please add a number between 1-5.')
+        } else {
+            dispatch({
+                type: 'ADD_UNDERSTAND',
+                payload: understandInput
+            })
+            history.push('/supportForm');
+        }
     }
 
     const addFeedback = (event) => {

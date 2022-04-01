@@ -7,12 +7,21 @@ function ReviewForm() {
 
     const history = useHistory();
     const dispatch = useDispatch();
+
     const feelingInput = useSelector(store => store.feelingReducer);
     const understandingInput = useSelector(store => store.understandReducer);
     const supportInput = useSelector(store => store.supportReducer);
     const commentInput = useSelector(store => store.commentReducer);
 
     const handleClick = () => {
+        let feedback = {
+            feelingInput: feelingInput,
+            understandingInput: understandingInput,
+            supportInput: supportInput,
+            commentInput: commentInput
+        }
+
+        axios.post('/feedback', feedback)
         dispatch({
             type: 'CLEAR'
         })

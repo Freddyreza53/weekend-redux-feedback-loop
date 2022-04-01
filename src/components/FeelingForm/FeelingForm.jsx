@@ -8,11 +8,15 @@ function FeelingForm() {
     let [feelingInput, setFeelingInput] = useState('');
 
     const handleClick = () => {
-        dispatch({
-            type: 'ADD_FEELING',
-            payload: feelingInput
-        })
-        history.push('/understandingForm');
+        if (feelingInput === '') {
+            alert('Please add a number between 1-5.')
+        } else {
+            dispatch({
+                type: 'ADD_FEELING',
+                payload: feelingInput
+            })
+            history.push('/understandingForm');
+        }
     };
 
     const addFeedback = (event) => {

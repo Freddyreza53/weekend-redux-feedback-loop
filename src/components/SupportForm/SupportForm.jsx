@@ -9,11 +9,15 @@ function SupportForm() {
     let [supportInput, setSupportInput] = useState('');
 
     const handleClick = () => {
-        dispatch({
-            type: 'ADD_SUPPORT',
-            payload: supportInput
-        })
-        history.push('/commentsForm');
+        if (supportInput === '') {
+            alert('Please add a number between 1-5.')
+        } else {
+            dispatch({
+                type: 'ADD_SUPPORT',
+                payload: supportInput
+            })
+            history.push('/commentsForm');
+        }
     };
 
     const addFeedback = (event) => {

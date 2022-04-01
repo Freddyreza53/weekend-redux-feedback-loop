@@ -9,11 +9,11 @@ function CommentsForm() {
     let [commentInput, setCommentInput] = useState('');
 
     const handleClick = () => {
-        dispatch({
-            type: 'ADD_COMMENT',
-            payload: commentInput
-        })
-        history.push('/reviewForm');
+            dispatch({
+                type: 'ADD_COMMENT',
+                payload: commentInput
+            })
+            history.push('/reviewForm');
     }
 
     const addFeedback = (event) => {

@@ -22,10 +22,17 @@ function ReviewForm() {
         }
 
         axios.post('/feedback', feedback)
-        dispatch({
-            type: 'CLEAR'
-        })
-        history.push('/submittedPage');
+            .then( response => {
+                dispatch({
+                    type: 'CLEAR'
+                })
+                history.push('/submittedPage');
+            })
+            .catch( err => {
+                console.log(err);
+                alert(err);
+            })
+        
     }
 
     return (

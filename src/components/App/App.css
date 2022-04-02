@@ -22,6 +22,15 @@ h4 {
   font-style: italic;
 }
 
+.editInput {
+  width: 40px;
+}
+
+.editDiv {
+  display: flex;
+  align-items: center;
+}
+
 /* .slideDiv {
   width: 300px;
 } */

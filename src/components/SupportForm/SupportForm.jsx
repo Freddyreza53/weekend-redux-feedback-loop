@@ -20,6 +20,11 @@ function SupportForm() {
         }
     };
 
+    const handleBack = () => {
+        history.push('/understandingForm');
+    }
+
+
     const addFeedback = (event) => {
         setSupportInput(event.target.value);
     };
@@ -33,7 +38,10 @@ function SupportForm() {
                 onChange={addFeedback}
                 value={supportInput}
             />
-            <button onClick={handleClick}>NEXT</button>
+            <div>
+                <button onClick={handleBack}>BACK</button>
+                <button onClick={handleClick}>NEXT</button>
+            </div>
         </div>
     )
 }

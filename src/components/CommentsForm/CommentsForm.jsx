@@ -16,6 +16,10 @@ function CommentsForm() {
             history.push('/reviewForm');
     }
 
+    const handleBack = () => {
+        history.push('/supportForm');
+    }
+
     const addFeedback = (event) => {
         setCommentInput(event.target.value);
     }
@@ -29,7 +33,10 @@ function CommentsForm() {
                 onChange={addFeedback}
                 value={commentInput}
             />
-            <button onClick={handleClick}>NEXT</button>
+            <div>
+                <button onClick={handleBack}>BACK</button>
+                <button onClick={handleClick}>NEXT</button>
+            </div>
         </div>
     )
 }

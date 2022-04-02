@@ -27,12 +27,15 @@ function FeelingForm() {
         <div>
             <h1>How are you feeling today?</h1>
             <label>scale of 1-5: </label>
+            
             <input 
                 type="number" 
                 onChange={addFeedback}
                 value={feelingInput}
             />
-            <button onClick={handleClick}>NEXT</button>
+            <div>
+                <button onClick={handleClick}>NEXT</button>
+            </div>
         </div>
     )
 }

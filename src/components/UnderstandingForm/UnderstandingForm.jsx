@@ -20,6 +20,10 @@ function UnderstandingForm() {
         }
     }
 
+    const handleBack = () => {
+        history.push('/');
+    }
+
     const addFeedback = (event) => {
         setUnderstandInput(event.target.value);
     }
@@ -33,7 +37,10 @@ function UnderstandingForm() {
                 onChange={addFeedback}
                 value={understandInput}
             />
-            <button onClick={handleClick}>NEXT</button>
+            <div className="buttonDiv">
+                <button onClick={handleBack}>BACK</button>
+                <button onClick={handleClick}>NEXT</button>
+            </div>
         </div>
     )
 }

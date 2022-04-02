@@ -32,7 +32,10 @@ function ReviewForm() {
                 console.log(err);
                 alert(err);
             })
-        
+    }
+
+    const handleBack = () => {
+        history.push('/commentsForm');
     }
 
     return (
@@ -42,7 +45,10 @@ function ReviewForm() {
             <h3>Understanding: {understandingInput}</h3>
             <h3>Support: {supportInput}</h3>
             <h3>Comments: {commentInput}</h3>
-            <button onClick={handleClick}>SUBMIT</button>
+            <div className="buttonDiv">
+                <button onClick={handleBack}>BACK</button>
+                <button onClick={handleClick}>NEXT</button>
+            </div>
         </div>
     )
 }

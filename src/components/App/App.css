@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-header {
@@ -22,14 +23,6 @@ h4 {
   font-style: italic;
 }
 
-.buttonDiv {
-  display: flex;
-  justify-content: center;
-}
-
-button {
-  margin: 15px;
-  padding: 5px;
-  /* margin-right: 50px;
-  margin-left: 50px; */
-}
+/* .slideDiv {
+  width: 300px;
+} */

@@ -1,8 +1,54 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: 700
+        },
+    },
+}));
+
+const marks = [
+    {
+        value: 0,
+        label: '0',
+    },
+    {
+        value: 1,
+        label: '1',
+    },
+    {
+        value: 2,
+        label: '2',
+    },
+    {
+        value: 3,
+        label: '3',
+    },
+    {
+        value: 4,
+        label: '4',
+    },
+    {
+        value: 5,
+        label: '5',
+    },
+];
+
+function valuetext(value) {
+    return value;
+}
 
 function UnderstandingForm() {
+
+    const classes = useStyles();
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -28,18 +74,45 @@ function UnderstandingForm() {
         setUnderstandInput(event.target.value);
     }
 
+    function valueLabelFormat(value) {
+        return marks.findIndex((mark) => mark.value === value);
+    }
     return (
-        <div>
+        <div className={classes.root}>
             <h1>How well are you understanding the content?</h1>
-            <label>Understand scale 1-5</label>
+            {/* <label>Understand scale 1-5</label>
             <input 
                 type="number" 
                 onChange={addFeedback}
                 value={understandInput}
+            /> */}
+            <Typography id="discrete-slider-restrict" gutterBottom>
+                Understand scale 1-5
+            </Typography>
+            <div className="slideDiv">
+            <Slider
+                defaultValue={0}
+                valueLabelFormat={valueLabelFormat}
+                getAriaValueText={valuetext}
+                aria-labelledby="discrete-slider-restrict"
+                step={null}
+                max={5}
+                valueLabelDisplay="auto"
+                marks={marks}
             />
+            </div>
+
             <div className="buttonDiv">
-                <button onClick={handleBack}>BACK</button>
-                <button onClick={handleClick}>NEXT</button>
+                <Button 
+                    variant="contained" 
+                    color="primary"
+                    onClick={handleBack}
+                >BACK</Button>
+                <Button 
+                    variant="contained" 
+                    color="primary"
+                    onClick={handleClick}
+                >NEXT</Button>
             </div>
         </div>
     )

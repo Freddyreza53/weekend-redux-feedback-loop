@@ -1,7 +1,20 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        },
+    },
+}));
+
 function FeelingForm() {
+
+    const classes = useStyles();
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -24,7 +37,7 @@ function FeelingForm() {
     };
 
     return (
-        <div>
+        <div className={classes.root}>
             <h1>How are you feeling today?</h1>
             <label>scale of 1-5: </label>
             
@@ -34,7 +47,11 @@ function FeelingForm() {
                 value={feelingInput}
             />
             <div>
-                <button onClick={handleClick}>NEXT</button>
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    onClick={handleClick}
+                >NEXT</Button>
             </div>
         </div>
     )

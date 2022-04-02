@@ -9,8 +9,7 @@ import Slider from '@material-ui/core/Slider';
 const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
-        margin: theme.spacing(1),
-        width: 700
+        margin: theme.spacing(1)
         },
     },
 }));
@@ -70,11 +69,12 @@ function UnderstandingForm() {
         history.push('/');
     }
 
-    const addFeedback = (event) => {
-        setUnderstandInput(event.target.value);
+    const addFeedback = (value) => {
+        setUnderstandInput(value);
     }
 
     function valueLabelFormat(value) {
+        addFeedback(value)
         return marks.findIndex((mark) => mark.value === value);
     }
     return (
@@ -96,6 +96,10 @@ function UnderstandingForm() {
                 getAriaValueText={valuetext}
                 aria-labelledby="discrete-slider-restrict"
                 step={null}
+                style={{
+                    width: 200
+                }}
+                // onChange={(event) => addFeedback(value)}
                 max={5}
                 valueLabelDisplay="auto"
                 marks={marks}
@@ -106,6 +110,9 @@ function UnderstandingForm() {
                 <Button 
                     variant="contained" 
                     color="primary"
+                    style={{
+                        margin: 10
+                    }}
                     onClick={handleBack}
                 >BACK</Button>
                 <Button 

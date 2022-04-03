@@ -20,6 +20,11 @@ function ReviewForm() {
     const supportInput = useSelector(store => store.supportReducer);
     const commentInput = useSelector(store => store.commentReducer);
 
+    const [newFeeling, setNewFeeling] = useState(feelingInput);
+    const [newUnderstanding, setNewUnderstanding] = useState(understandingInput);
+    const [newSupport, setNewSupport] = useState(supportInput);
+    const [newComments, setNewComments] = useState(commentInput);
+
     const handleClick = () => {
         let feedback = {
             feelingInput: feelingInput,
@@ -46,14 +51,63 @@ function ReviewForm() {
     }
 
     const [editFeeling, setEditFeeling] = useState(false)
-
-
-    const editClick = () => {
+    const editClickFeeling = () => {
         setEditFeeling(!editFeeling);
     }
-
     const saveFeeling = () => {
-        console.log('yes');
+        if (newFeeling < 0 || newFeeling > 5) {
+            alert('Please choose a number between 1 and 5.');
+        } else {
+            dispatch({
+                type: 'ADD_FEELING',
+                payload: newFeeling
+            })
+            setEditFeeling(!editFeeling);
+        }
+    }
+
+    const [editUnderstanding, setEditUnderstanding] = useState(false)
+    const editClickUnderstanding = () => {
+        setEditUnderstanding(!editUnderstanding);
+    }
+    const saveUnderstanding = () => {
+        if (newUnderstanding < 0 || newUnderstanding > 5) {
+            alert('Please choose a number between 1 and 5.');
+        } else {
+            dispatch({
+                type: 'ADD_UNDERSTAND',
+                payload: newUnderstanding
+            })
+            setEditUnderstanding(!editUnderstanding);
+        }
+    }
+
+    const [editSupport, setEditSupport] = useState(false)
+    const editClickSupport = () => {
+        setEditSupport(!editSupport);
+    }
+    const saveSupport = () => {
+        if (newSupport < 0 || newSupport > 5) {
+            alert('Please choose a number between 1 and 5.');
+        } else {
+            dispatch({
+                type: 'ADD_SUPPORT',
+                payload: newSupport
+            })
+            setEditSupport(!editSupport);
+        }
+    }
+
+    const [editComment, setEditComment] = useState(false)
+    const editClickComment = () => {
+        setEditComment(!editComment);
+    }
+    const saveComment = () => {
+        dispatch({
+            type: 'ADD_COMMENT',
+            payload: newComments
+        })
+        setEditComment(!editComment);
     }
 
     return (
@@ -67,17 +121,12 @@ function ReviewForm() {
                 {editFeeling === true ? 
                     <div className="editDiv">
                         <h3>Feelings: </h3>
-                        <input className="editInput" type="number" onChange={saveFeeling} value=''/> 
+                        <input className="editInput" type="number" onChange={(event) => setNewFeeling(event.target.value)} value={newFeeling}/> 
                         <button onClick={saveFeeling}>save</button>
                     </div>
                     : 
                     <h3>Feelings: {feelingInput} </h3>}
-                
-
-                {/* {editFeeling && <button>save</button> } */}
-                
-                
-                <IconButton color="secondary" onClick={editClick}>
+                <IconButton color="secondary" onClick={editClickFeeling}>
                     <EditIcon />
                 </IconButton>
             </Box>
@@ -86,8 +135,15 @@ function ReviewForm() {
                 display: 'flex',
                 justifyContent: 'center'
             }}>
-                <h3>Understanding: {understandingInput}</h3>
-                <IconButton color="secondary" >
+                {editUnderstanding === true ? 
+                    <div className="editDiv">
+                        <h3>Understanding: </h3>
+                        <input className="editInput" type="number" onChange={(event) => setNewUnderstanding(event.target.value)} value={newUnderstanding}/> 
+                        <button onClick={saveUnderstanding}>save</button>
+                    </div>
+                    : 
+                    <h3>Understanding: {understandingInput} </h3>}
+                <IconButton color="secondary" onClick={editClickUnderstanding}>
                     <EditIcon />
                 </IconButton>
             </Box>
@@ -96,8 +152,15 @@ function ReviewForm() {
                 display: 'flex',
                 justifyContent: 'center'
             }}>
-                <h3>Support: {supportInput}</h3>
-                <IconButton color="secondary" >
+                {editSupport === true ? 
+                    <div className="editDiv">
+                        <h3>Support: </h3>
+                        <input className="editInput" type="number" onChange={(event) => setNewSupport(event.target.value)} value={newSupport}/> 
+                        <button onClick={saveSupport}>save</button>
+                    </div>
+                    : 
+                    <h3>Support: {supportInput} </h3>}
+                <IconButton color="secondary" onClick={editClickSupport}>
                     <EditIcon />
                 </IconButton>
             </Box>
@@ -106,8 +169,15 @@ function ReviewForm() {
                 display: 'flex',
                 justifyContent: 'center'
             }}>
-                <h3>Comments: {commentInput}</h3>
-                <IconButton color="secondary">
+                {editComment === true ? 
+                    <div className="editDiv">
+                        <h3>Comments: </h3>
+                        <input type="text" onChange={(event) => setNewComments(event.target.value)} value={newComments}/> 
+                        <button onClick={saveComment}>save</button>
+                    </div>
+                    : 
+                    <h3>Comments: {commentInput} </h3>}
+                <IconButton color="secondary" onClick={editClickComment}>
                     <EditIcon />
                 </IconButton>
             </Box>

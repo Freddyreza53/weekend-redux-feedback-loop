@@ -184,7 +184,7 @@ function ReviewForm() {
             
             <div className="buttonDiv">
                 <button onClick={handleBack}>BACK</button>
-                <button onClick={handleClick}>NEXT</button>
+                <button onClick={handleClick}>SUBMIT</button>
             </div>
         </div>
     )
